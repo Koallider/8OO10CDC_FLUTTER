@@ -1,8 +1,13 @@
+import 'dart:math';
+
 import 'package:countdown_solver/base_widgets/letter.dart';
 import 'package:countdown_solver/solver/letter_solver.dart';
 import 'package:countdown_solver/solver/trie.dart';
 import 'package:countdown_solver/solver/trie_builder.dart';
+import 'package:countdown_solver/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,12 +36,10 @@ class SolverPage extends StatefulWidget {
 }
 
 class _SolverPageState extends State<SolverPage> {
-  List<String> word = List.generate(9, (index) => "");
-
-  String resultString = "";
-
+  List<String> topResults = [];
   Trie trie = Trie();
 
+  @override
   void initState() {
     super.initState();
     initTrie();
@@ -50,64 +53,85 @@ class _SolverPageState extends State<SolverPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        alignment: Alignment.center,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                  9,
-                  (index) => Container(
-                        width: 100,
-                        height: 100,
-                        child: LetterWidget(
-                          letter: word[index],
-                          editable: true,
-                          onChanged: (String value) {
-                            setState(() {
-                              word[index] = value.toLowerCase();
-                            });
-                            var wordToSearch = word.join();
-                            if (wordToSearch.length > 1) {
-                              var result = searchForAllPermutations(
-                                  trie, wordToSearch.toLowerCase().split(""));
-                              result
-                                  .sort((a, b) => b.length.compareTo(a.length));
-                              setState(() {
-                                if (result.isEmpty) {
-                                  resultString = "";
-                                } else {
-                                  resultString = result.first.toUpperCase();
-                                }
-                              });
-                            }else{
-                              setState(() {
-                                resultString = "";
-                              });
-                            }
-                          },
-                        ),
-                        margin: const EdgeInsets.all(4),
-                      )),
+            const Text(
+              "Enter your letters:",
+              style: TextStyle(fontSize: 32),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                  9,
-                  (index) => Container(
-                        width: 100,
-                        height: 100,
-                        child: LetterWidget(
-                            letter: index < resultString.length
-                                ? resultString[index]
-                                : ""),
-                        margin: const EdgeInsets.all(4),
-                      )),
-            ),
+            buildInputField(),
+            Expanded(child: buildResultList())
           ],
         ),
       ),
     );
+  }
+
+  Widget buildInputField() => PinCodeTextField(
+        mainAxisAlignment: MainAxisAlignment.center,
+        length: 9,
+        animationType: AnimationType.none,
+        pinTheme: PinTheme(
+            shape: PinCodeFieldShape.box,
+            inactiveColor: AppTheme.letterBorderColor,
+            activeColor: AppTheme.letterBorderColor,
+            selectedColor: AppTheme.letterBorderColor,
+            inactiveFillColor: AppTheme.letterBackgroundColor,
+            selectedFillColor: AppTheme.letterBackgroundColor,
+            activeFillColor: AppTheme.letterBackgroundColor,
+            fieldHeight: 80,
+            fieldWidth: 80,
+            fieldOuterPadding: const EdgeInsets.all(4)),
+        enableActiveFill: true,
+        autoDismissKeyboard: false,
+        enablePinAutofill: false,
+        textStyle: AppTheme.letterTextStyle,
+        onChanged: runSearch,
+        appContext: context,
+      );
+
+  Widget buildResultList() => ListView.builder(
+      itemCount: topResults.length,
+      itemBuilder: (BuildContext context, int index) {
+        var resultWord = topResults[index].toUpperCase();
+
+        return SizedBox(
+          height: 80,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: List.generate(
+                9,
+                (letterIndex) => Container(
+                      width: 60,
+                      height: 60,
+                      child: LetterWidget(
+                          letter: letterIndex < resultWord.length
+                              ? resultWord[letterIndex]
+                              : ""),
+                      margin: const EdgeInsets.all(4),
+                    )),
+          ),
+        );
+      }).build(context);
+
+  void runSearch(String wordToSearch) {
+    if (wordToSearch.length > 1) {
+      var result =
+          searchForAllPermutations(trie, wordToSearch.toLowerCase().split(""));
+      result.sort((a, b) => b.length.compareTo(a.length));
+      setState(() {
+        if (result.isEmpty) {
+          topResults = [];
+        } else {
+          topResults = result.sublist(0, min(result.length, 10) - 1);
+        }
+      });
+    } else {
+      setState(() {
+        topResults = [];
+      });
+    }
   }
 }
