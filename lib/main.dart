@@ -71,7 +71,7 @@ class _SolverPageState extends State<SolverPage> {
                             var wordToSearch = word.join();
                             if (wordToSearch.length > 1) {
                               var result = searchForAllPermutations(
-                                  trie, word.join().toLowerCase().split(""));
+                                  trie, wordToSearch.toLowerCase().split(""));
                               result
                                   .sort((a, b) => b.length.compareTo(a.length));
                               setState(() {

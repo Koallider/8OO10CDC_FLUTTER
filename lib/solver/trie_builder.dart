@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 Future<Trie> fillTrie(Trie trie, String dictionaryAssetPath) async {
   String dictionary = await rootBundle.loadString(dictionaryAssetPath);
-  dictionary.split("\n").forEach((element) {
+  dictionary.split("\r\n").forEach((element) {
     trie.insertWord(element);
   });
   return trie;
