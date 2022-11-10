@@ -1,2 +1,12 @@
 # 8OO10CDC_FLUTTER
-Countdown letter game solver made using flutter. Can run on web or mobile
+
+I love watching 8 Out Of 10 Cats Does Countdown. And I thougth It would be fun to make a solver for the letter game.
+
+<img src="https://user-images.githubusercontent.com/2699619/201027572-4ed46a56-fc9e-4c1a-983d-c7bbaf88af67.PNG" width="400" height="250">
+
+[Live Demo](https://koallider.github.io/8OO10CDC_FLUTTER/#/)
+
+Future plans:
+* Redesign
+* Numbers Game
+* Mobile version
