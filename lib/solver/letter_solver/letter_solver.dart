@@ -2,7 +2,7 @@ import 'dart:collection';
 import 'dart:core';
 import 'dart:math';
 
-import 'package:countdown_solver/solver/trie.dart';
+import 'package:countdown_solver/solver/letter_solver/trie.dart';
 
 List<String> searchForAllPermutations(Trie trie, List<String> word) {
   Set<String> results = HashSet<String>();
@@ -25,7 +25,6 @@ List<String> searchForAllPermutations(Trie trie, List<String> word) {
     word = begin + end;
 
     while (i >= 0) {
-      //todo check <
       if (word[i].compareTo(word[i + 1]) < 0){
         break;
       }

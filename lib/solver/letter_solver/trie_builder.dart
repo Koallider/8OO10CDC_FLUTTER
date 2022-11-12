@@ -1,4 +1,4 @@
-import 'package:countdown_solver/solver/trie.dart';
+import 'package:countdown_solver/solver/letter_solver/trie.dart';
 import 'package:flutter/services.dart';
 
 Future<Trie> fillTrie(Trie trie, String dictionaryAssetPath) async {

@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:countdown_solver/base_widgets/letter.dart';
-import 'package:countdown_solver/solver/letter_solver.dart';
-import 'package:countdown_solver/solver/trie.dart';
-import 'package:countdown_solver/solver/trie_builder.dart';
+import 'package:countdown_solver/solver/letter_solver/letter_solver.dart';
+import 'package:countdown_solver/solver/letter_solver/trie.dart';
+import 'package:countdown_solver/solver/letter_solver/trie_builder.dart';
 import 'package:countdown_solver/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
