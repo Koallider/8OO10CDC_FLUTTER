@@ -5,9 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LetterWidget extends StatefulWidget {
-  String letter;
+  final String letter;
+  final TextStyle? textStyle;
 
-  LetterWidget({Key? key, required this.letter}) : super(key: key);
+  const LetterWidget({Key? key, required this.letter, this.textStyle}) : super(key: key);
 
   @override
   State<LetterWidget> createState() => _LetterWidgetState();
@@ -26,7 +27,7 @@ class _LetterWidgetState extends State<LetterWidget> {
               ? widget.letter.substring(0, 1)
               : widget.letter,
           textAlign: TextAlign.center,
-          style: AppTheme.letterTextStyle,
+          style: widget.textStyle ?? AppTheme.letterTextStyle,
         ));
   }
 }
