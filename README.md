@@ -8,7 +8,7 @@ There is no server side and it does all calculations on the client. The dictiona
 
 [Live Demo](https://koallider.github.io/8OO10CDC_FLUTTER/#/)
 
+[![App On Google Play](https://lh3.googleusercontent.com/q1k2l5CwMV31JdDXcpN4Ey7O43PxnjAuZBTmcHEwQxVuv_2wCE2gAAQMWxwNUC2FYEOnYgFPOpw6kmHJWuEGeIBLTj9CuxcOEeU8UXyzWJq4NJM3lg=s0)](https://play.google.com/store/apps/details?id=me.koallider.countdown_solver)
+
 Future plans:
-* Redesign
 * Numbers Game
-* Mobile version
