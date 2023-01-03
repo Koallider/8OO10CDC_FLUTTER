@@ -1,30 +1,28 @@
 import 'package:countdown_solver/theme.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class LetterWidget extends StatefulWidget {
-  final String letter;
+class TargetNumberWidget extends StatefulWidget {
   final TextStyle? textStyle;
 
-  const LetterWidget({Key? key, required this.letter, this.textStyle}) : super(key: key);
+  const TargetNumberWidget({Key? key, this.textStyle}) : super(key: key);
 
   @override
-  State<LetterWidget> createState() => _LetterWidgetState();
+  State<TargetNumberWidget> createState() => _TargetNumberWidgetState();
 }
 
-class _LetterWidgetState extends State<LetterWidget> {
+class _TargetNumberWidgetState extends State<TargetNumberWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+        width: 110,
         decoration: BoxDecoration(
             color: AppTheme.letterBackgroundColor,
             border: Border.all(color: AppTheme.letterBorderColor, width: 2)),
         alignment: Alignment.center,
-        child: Text(
-          widget.letter.length > 1
-              ? widget.letter.substring(0, 1)
-              : widget.letter,
+        child: TextField(
+          maxLines: 1,
           textAlign: TextAlign.center,
+          keyboardType: TextInputType.number,
           style: widget.textStyle ?? AppTheme.letterTextStyle,
         ));
   }
