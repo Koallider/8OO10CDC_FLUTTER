@@ -1,8 +1,6 @@
 import 'package:countdown_solver/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LetterWidget extends StatefulWidget {
   final String letter;

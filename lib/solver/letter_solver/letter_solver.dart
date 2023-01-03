@@ -56,6 +56,8 @@ void reverse(List<String> word, int fromIndex, int toIndex) {
   }
 }
 
+/// Returns the smallest character which is greater than
+/// the character on the [fromIndex] position
 int findCeil(List<String> word, int fromIndex) {
   var ceilIndex = fromIndex + 1;
 
