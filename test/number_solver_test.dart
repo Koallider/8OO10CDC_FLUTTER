@@ -4,7 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test("RPN calculator test", () {
     NumberSolver solver = NumberSolver();
-
     var rpn = [
       RPNWrapper(number: 3),
       RPNWrapper(number: 4),
@@ -17,5 +16,18 @@ void main() {
       RPNWrapper(operator: Operator.div),
     ];
     expect(solver.calculateRPN(rpn), 8);
+  });
+  test("RPN calculator test 2", () {
+    NumberSolver solver = NumberSolver();
+    var rpn = [
+      RPNWrapper(number: 3),
+      RPNWrapper(number: 1),
+      RPNWrapper(operator: Operator.sub),
+      RPNWrapper(number: 4),
+      RPNWrapper(number: 2),
+      RPNWrapper(operator: Operator.sub),
+      RPNWrapper(operator: Operator.mul),
+    ];
+    expect(solver.calculateRPN(rpn), 4);
   });
 }

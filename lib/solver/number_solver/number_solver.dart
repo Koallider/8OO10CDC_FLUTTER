@@ -16,6 +16,11 @@ class RPNWrapper {
   Operator? operator;
 
   RPNWrapper({this.number, this.operator});
+
+  @override
+  String toString() {
+    return number?.toString() ?? operator?.toString() ?? "";
+  }
 }
 
 class NumberSolver {
@@ -28,7 +33,7 @@ class NumberSolver {
         stack.add(element.number);
       } else if (element.operator != null) {
         var b = stack.removeLast();
-        var a = stack.removeFirst();
+        var a = stack.removeLast();
         stack.add(operatorMap[element.operator]!.call(a, b));
       }
     }
