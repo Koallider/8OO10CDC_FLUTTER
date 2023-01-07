@@ -2,6 +2,8 @@ import 'package:countdown_solver/base_widgets/target_number.dart';
 import 'package:countdown_solver/theme.dart';
 import 'package:flutter/material.dart';
 
+import 'base_widgets/dropdown_number.dart';
+
 class NumbersGameWidget extends StatefulWidget {
   const NumbersGameWidget({Key? key}) : super(key: key);
 
@@ -35,6 +37,13 @@ class _NumbersGameWidgetState extends State<NumbersGameWidget> {
                     style: AppTheme.textStyle,
                   ),
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                      6,
+                      (index) => Container(
+                          padding: const EdgeInsets.all(2), child: const DropdownNumber())),
+                )
               ],
             ),
           ),
