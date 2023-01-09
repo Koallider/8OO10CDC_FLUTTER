@@ -12,3 +12,4 @@ There is no server side and it does all calculations on the client. The dictiona
 
 Future plans:
 * Numbers Game
+* Multiple Languages
