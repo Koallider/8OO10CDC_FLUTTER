@@ -83,7 +83,8 @@ class NumberSolver {
   }
 
   List<int> subtractList(List<int> complete, List<int> subset) {
-    return complete.where((element) => !subset.contains(element)).toList();
+    var temp = subset.toList();
+    return complete.where((element) => !temp.remove(element)).toList();
   }
 
   void addResult(Map<int, Set<String>> map, int key, String solution) {
