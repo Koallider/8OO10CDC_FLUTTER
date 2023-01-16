@@ -15,9 +15,9 @@ class NumberSolver {
       required this.nums,
       this.findAllSolutions = false});
 
-  Set<String>? solve() {
+  Set<String> solve() {
     var result = solveRecursive(nums);
-    return result[target];
+    return result[target] ?? <String>{};
   }
 
   Map<int, Set<String>> solveRecursive(List<int> nums) {
