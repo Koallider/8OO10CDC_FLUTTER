@@ -42,7 +42,7 @@ class NumberSolver {
         addResults(result, r1, s1[r1]!);
         for (var r2 in s2.keys) {
           addResults(result, r2, s2[r2]!);
-          if (r1 > r2) {
+          if (r1 >= r2) {
             addResults(result, r1 + r2, comb(s1[r1]!, "+", s2[r2]!));
             if(r1 > 1 && r2 > 1) {
               addResults(result, r1 * r2, comb(s1[r1]!, "*", s2[r2]!));
