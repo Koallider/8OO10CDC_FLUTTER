@@ -44,15 +44,17 @@ class NumberSolver {
           addResults(result, r2, s2[r2]!);
           if (r1 > r2) {
             addResults(result, r1 + r2, comb(s1[r1]!, "+", s2[r2]!));
-            addResults(result, r1 * r2, comb(s1[r1]!, "*", s2[r2]!));
+            if(r1 > 1 && r2 > 1) {
+              addResults(result, r1 * r2, comb(s1[r1]!, "*", s2[r2]!));
+            }
           }
 
           addResults(result, r1 - r2, comb(s1[r1]!, "-", s2[r2]!));
           addResults(result, r2 - r1, comb(s2[r2]!, "-", s1[r1]!));
-          if (r1 != 0 && r2 % r1 == 0) {
+          if (r1 > 1 && r2 % r1 == 0) {
             addResults(result, r2 ~/ r1, comb(s2[r2]!, "/", s1[r1]!));
           }
-          if (r2 != 0 && r1 % r2 == 0) {
+          if (r2 > 1 && r1 % r2 == 0) {
             addResults(result, r1 ~/ r2, comb(s1[r1]!, "/", s2[r2]!));
           }
         }
