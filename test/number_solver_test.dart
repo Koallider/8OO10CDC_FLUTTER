@@ -27,4 +27,34 @@ void main() {
       expect(result, containsAll(["2*2", "2+2"]));
     });
   });
+  group("Solver util methods tests", () {
+    late NumberSolver utilSolver;
+    setUp((){
+      utilSolver = NumberSolver(target: 1, nums: [1]);
+    });
+    test("Subtract list test", (){
+      List<int> list1 = [1, 2, 2, 3];
+      List<int> list2 = [1, 2];
+      List result = utilSolver.subtractList(list1, list2);
+      expect(result, equals([2, 3]));
+    });
+    test("Subtract list test empty list", (){
+      List<int> list1 = [1, 2, 2, 3];
+      List<int> list2 = [];
+      List result = utilSolver.subtractList(list1, list2);
+      expect(result, equals([1, 2, 2, 3]));
+    });
+    test("Subtract list test empty list 2", (){
+      List<int> list1 = [];
+      List<int> list2 = [1, 2, 2, 3];
+      List result = utilSolver.subtractList(list1, list2);
+      expect(result, equals([]));
+    });
+    test("Is single int test", (){
+      expect(utilSolver.isSingleInt("10"), equals(true));
+      expect(utilSolver.isSingleInt("-5"), equals(true));
+      expect(utilSolver.isSingleInt("-5+1"), equals(false));
+      expect(utilSolver.isSingleInt("*"), equals(false));
+    });
+  });
 }
