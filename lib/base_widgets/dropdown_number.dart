@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 class DropdownNumber extends StatefulWidget {
   final TextStyle? textStyle;
+  final ValueChanged<int?>? onChanged;
 
-  const DropdownNumber({Key? key, this.textStyle}) : super(key: key);
+  const DropdownNumber({Key? key, this.textStyle, this.onChanged}) : super(key: key);
 
   @override
   State<DropdownNumber> createState() => _DropdownNumberState();
@@ -42,6 +43,7 @@ class _DropdownNumberState extends State<DropdownNumber> {
           onChanged: (newValue) {
             setState(() {
               value = newValue;
+              widget.onChanged?.call(newValue);
             });
           },
         ));

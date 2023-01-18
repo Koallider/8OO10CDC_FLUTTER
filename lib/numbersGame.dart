@@ -1,4 +1,5 @@
 import 'package:countdown_solver/base_widgets/target_number.dart';
+import 'package:countdown_solver/solver/number_solver/number_solver.dart';
 import 'package:countdown_solver/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,11 @@ class NumbersGameWidget extends StatefulWidget {
 }
 
 class _NumbersGameWidgetState extends State<NumbersGameWidget> {
+  int? target;
+  List<int?> numbers = List.generate(6, (index) => null);
+
+  Set<String> solutions = {};
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +35,11 @@ class _NumbersGameWidgetState extends State<NumbersGameWidget> {
                     style: AppTheme.textStyle,
                   ),
                 ),
-                const TargetNumberWidget(),
+                TargetNumberWidget(
+                  onChanged: (value) {
+                    target = int.parse(value);
+                  },
+                ),
                 Container(
                   margin: const EdgeInsets.all(8),
                   child: Text(
@@ -42,8 +52,27 @@ class _NumbersGameWidgetState extends State<NumbersGameWidget> {
                   children: List.generate(
                       6,
                       (index) => Container(
-                          padding: const EdgeInsets.all(2), child: const DropdownNumber())),
-                )
+                          padding: const EdgeInsets.all(2),
+                          child: DropdownNumber(
+                            onChanged: (value) {
+                              numbers[index] = value;
+                            },
+                          ))),
+                ),
+                TextButton(
+                    onPressed: () {
+                      //todo validate input
+                      var solver = NumberSolver(
+                          target: target!,
+                          nums: numbers.map((e) => e!).toList(),
+                          findAllSolutions: false);
+                      setState(() {
+                        solutions = solver.solve();
+                      });
+                    },
+                    child: Text("SOLVE")),
+                //todo loading and no solutions text
+                solutions.isNotEmpty ? Column(children: [Text(solutions.toList().first)]) : Text("No solution")
               ],
             ),
           ),

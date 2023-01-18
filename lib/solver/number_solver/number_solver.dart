@@ -5,6 +5,7 @@ class NumberSolver {
 
   int target;
   List<int> nums;
+  //make that work properly
   bool findAllSolutions;
 
   Map<String, Map<int, Set<String>>> cache = {};
