@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'lettersGame.dart';
+import 'numbersGame.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LettersGameWidget(),
+      home: const NumbersGameWidget(),
     );
   }
 }

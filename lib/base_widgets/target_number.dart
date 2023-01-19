@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 class TargetNumberWidget extends StatefulWidget {
   final TextStyle? textStyle;
+  final ValueChanged<String>? onChanged;
 
-  const TargetNumberWidget({Key? key, this.textStyle}) : super(key: key);
+  const TargetNumberWidget({Key? key, this.textStyle, this.onChanged}) : super(key: key);
 
   @override
   State<TargetNumberWidget> createState() => _TargetNumberWidgetState();
@@ -20,6 +21,7 @@ class _TargetNumberWidgetState extends State<TargetNumberWidget> {
             border: Border.all(color: AppTheme.letterBorderColor, width: 2)),
         alignment: Alignment.center,
         child: TextField(
+          onChanged: widget.onChanged,
           maxLines: 1,
           textAlign: TextAlign.center,
           keyboardType: TextInputType.number,
