@@ -56,5 +56,10 @@ void main() {
       expect(utilSolver.isSingleInt("-5+1"), equals(false));
       expect(utilSolver.isSingleInt("*"), equals(false));
     });
+    test("Subsets test", (){
+      List<int> list = [1, 2];
+      var result = utilSolver.subsets(list);
+      expect(result, containsAll([[1], [2], [1, 2]]));
+    });
   });
 }
