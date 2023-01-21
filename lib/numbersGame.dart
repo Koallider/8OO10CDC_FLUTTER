@@ -16,7 +16,7 @@ class _NumbersGameWidgetState extends State<NumbersGameWidget> {
   int? target;
   List<int?> numbers = List.generate(6, (index) => null);
 
-  Set<String> solutions = {};
+  Set<String>? solutions;
 
   @override
   Widget build(BuildContext context) {
@@ -59,20 +59,42 @@ class _NumbersGameWidgetState extends State<NumbersGameWidget> {
                             },
                           ))),
                 ),
-                TextButton(
-                    onPressed: () {
-                      //todo validate input
-                      var solver = NumberSolver(
-                          target: target!,
-                          nums: numbers.map((e) => e!).toList(),
-                          findAllSolutions: false);
-                      setState(() {
-                        solutions = solver.solve();
-                      });
-                    },
-                    child: Text("SOLVE")),
-                //todo loading and no solutions text
-                solutions.isNotEmpty ? Column(children: [Text(solutions.toList().first)]) : Text("No solution")
+                Container(
+                  margin: const EdgeInsets.all(16),
+                  child: MaterialButton(
+                      padding: const EdgeInsets.only(
+                          top: 16, bottom: 16, left: 32, right: 32),
+                      color: AppTheme.letterBackgroundColor,
+                      onPressed: () {
+                        //todo validate input
+                        var solver = NumberSolver(
+                            target: target!,
+                            nums: numbers.map((e) => e!).toList(),
+                            findAllSolutions: false);
+                        setState(() {
+                          solutions = solver.solve();
+                        });
+                      },
+                      child: const Text(
+                        "SOLVE",
+                        style: TextStyle(color: Colors.white, fontSize: 24),
+                      )),
+                ),
+                Expanded(
+                    child: Container(
+                  padding: const EdgeInsets.all(16),
+                  alignment: Alignment.topCenter,
+                  constraints: const BoxConstraints.expand(),
+                  color: AppTheme.boardInBorderColor,
+                  child: solutions == null
+                      ? Container()
+                      : solutions!.isNotEmpty
+                          ? Column(children: [
+                              Text(solutions!.toList().first,
+                                  style: AppTheme.textStyle)
+                            ])
+                          : Text("No solution", style: AppTheme.textStyle),
+                ))
               ],
             ),
           ),
