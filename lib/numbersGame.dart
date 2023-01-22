@@ -16,7 +16,7 @@ class _NumbersGameWidgetState extends State<NumbersGameWidget> {
   int? target;
   List<int?> numbers = List.generate(6, (index) => null);
 
-  Set<String>? solutions;
+  Set<ResultNode>? solutions;
 
   @override
   Widget build(BuildContext context) {
@@ -47,17 +47,35 @@ class _NumbersGameWidgetState extends State<NumbersGameWidget> {
                     style: AppTheme.textStyle,
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                      6,
-                      (index) => Container(
-                          padding: const EdgeInsets.all(2),
-                          child: DropdownNumber(
-                            onChanged: (value) {
-                              numbers[index] = value;
-                            },
-                          ))),
+                Wrap(
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                          3,
+                          (index) => Container(
+                              padding: const EdgeInsets.all(2),
+                              child: DropdownNumber(
+                                onChanged: (value) {
+                                  numbers[index] = value;
+                                },
+                              ))),
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                          3,
+                          (index) => Container(
+                              padding: const EdgeInsets.all(2),
+                              child: DropdownNumber(
+                                onChanged: (value) {
+                                  numbers[3 + index] = value;
+                                },
+                              ))),
+                    ),
+                  ],
                 ),
                 Container(
                   margin: const EdgeInsets.all(16),
@@ -90,7 +108,7 @@ class _NumbersGameWidgetState extends State<NumbersGameWidget> {
                       ? Container()
                       : solutions!.isNotEmpty
                           ? Column(children: [
-                              Text(solutions!.toList().first,
+                              Text(solutions!.toList().first.solution,
                                   style: AppTheme.textStyle)
                             ])
                           : Text("No solution", style: AppTheme.textStyle),
