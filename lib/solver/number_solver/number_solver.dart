@@ -5,6 +5,18 @@ class ResultNode {
   int result;
 
   ResultNode(this.solution, this.result);
+
+  @override
+  bool operator ==(Object other) {
+    if(other is ResultNode) {
+      return solution == (other).solution;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode => solution.hashCode;
+
 }
 
 class NumberSolver {
