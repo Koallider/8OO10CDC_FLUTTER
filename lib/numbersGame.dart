@@ -20,9 +20,9 @@ class _NumbersGameWidgetState extends State<NumbersGameWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: const Color(0xff4f657d),
-        body: SafeArea(
+    return Container(
+        color: const Color(0xff4f657d),
+        child: SafeArea(
           child: Container(
             alignment: Alignment.topCenter,
             child: Column(
