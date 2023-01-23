@@ -16,10 +16,14 @@ class LettersGameWidget extends StatefulWidget {
   State<LettersGameWidget> createState() => _LettersGameWidgetState();
 }
 
-class _LettersGameWidgetState extends State<LettersGameWidget> {
+class _LettersGameWidgetState extends State<LettersGameWidget>
+    with AutomaticKeepAliveClientMixin<LettersGameWidget> {
   int numberOfLetters = 9;
   List<String> topResults = [];
   Trie trie = Trie();
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -58,8 +62,7 @@ class _LettersGameWidgetState extends State<LettersGameWidget> {
                       style: AppTheme.textStyle,
                     ),
                   ),
-                if (topResults.isNotEmpty)
-                  buildBoard(buildResultList())
+                if (topResults.isNotEmpty) buildBoard(buildResultList())
               ],
             ),
           ),
@@ -69,10 +72,9 @@ class _LettersGameWidgetState extends State<LettersGameWidget> {
   }
 
   Widget buildBoard(Widget child) {
-
     double width = MediaQuery.of(context).size.width;
     double letterSize =
-    min((width - numberOfLetters * 4) / numberOfLetters, 80);
+        min((width - numberOfLetters * 4) / numberOfLetters, 80);
 
     return Container(
       width: letterSize * numberOfLetters + 2 + 34,
@@ -98,7 +100,7 @@ class _LettersGameWidgetState extends State<LettersGameWidget> {
   Widget buildInputField() {
     double width = MediaQuery.of(context).size.width;
     double letterSize =
-    min((width - numberOfLetters * 4) / numberOfLetters, 80);
+        min((width - numberOfLetters * 4) / numberOfLetters, 80);
 
     var style = GoogleFonts.robotoCondensed(
         fontWeight: FontWeight.bold,
@@ -134,7 +136,7 @@ class _LettersGameWidgetState extends State<LettersGameWidget> {
   Widget buildResultList() {
     double width = MediaQuery.of(context).size.width;
     double letterSize =
-    min((width - numberOfLetters * 4) / numberOfLetters, 80);
+        min((width - numberOfLetters * 4) / numberOfLetters, 80);
 
     var style = GoogleFonts.robotoCondensed(
         fontWeight: FontWeight.bold,
@@ -154,17 +156,17 @@ class _LettersGameWidgetState extends State<LettersGameWidget> {
               mainAxisSize: MainAxisSize.min,
               children: List.generate(
                   numberOfLetters,
-                      (letterIndex) => Container(
-                    width: letterSize,
-                    height: letterSize,
-                    child: LetterWidget(
-                      letter: letterIndex < resultWord.length
-                          ? resultWord[letterIndex]
-                          : "",
-                      textStyle: style,
-                    ),
-                    margin: const EdgeInsets.all(1),
-                  )),
+                  (letterIndex) => Container(
+                        width: letterSize,
+                        height: letterSize,
+                        child: LetterWidget(
+                          letter: letterIndex < resultWord.length
+                              ? resultWord[letterIndex]
+                              : "",
+                          textStyle: style,
+                        ),
+                        margin: const EdgeInsets.all(1),
+                      )),
             ),
           );
         }).build(context);
@@ -173,7 +175,7 @@ class _LettersGameWidgetState extends State<LettersGameWidget> {
   void runSearch(String wordToSearch) {
     if (wordToSearch.length > 1) {
       var result =
-      searchForAllPermutations(trie, wordToSearch.toLowerCase().split(""));
+          searchForAllPermutations(trie, wordToSearch.toLowerCase().split(""));
       result.sort((a, b) => b.length.compareTo(a.length));
       setState(() {
         if (result.isEmpty) {

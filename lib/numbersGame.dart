@@ -12,11 +12,15 @@ class NumbersGameWidget extends StatefulWidget {
   State<NumbersGameWidget> createState() => _NumbersGameWidgetState();
 }
 
-class _NumbersGameWidgetState extends State<NumbersGameWidget> {
+class _NumbersGameWidgetState extends State<NumbersGameWidget>
+    with AutomaticKeepAliveClientMixin<NumbersGameWidget> {
   int? target;
   List<int?> numbers = List.generate(6, (index) => null);
 
   Set<ResultNode>? solutions;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
