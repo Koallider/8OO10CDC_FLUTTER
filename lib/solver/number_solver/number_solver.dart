@@ -74,15 +74,11 @@ class NumberSolver {
             }
           }
           var calcResult = r1 - r2;
-          if (calcResult > 0) {
-            addResults(
-                result, calcResult, comb(s1[r1]!, "-", s2[r2]!, calcResult));
-          }
+          addResults(
+              result, calcResult, comb(s1[r1]!, "-", s2[r2]!, calcResult));
           calcResult = r2 - r1;
-          if (calcResult > 0) {
-            addResults(
-                result, calcResult, comb(s2[r2]!, "-", s1[r1]!, calcResult));
-          }
+          addResults(
+              result, calcResult, comb(s2[r2]!, "-", s1[r1]!, calcResult));
           if (r1 > 1 && r2 % r1 == 0) {
             calcResult = r2 ~/ r1;
             addResults(
@@ -130,8 +126,10 @@ class NumberSolver {
 
   void addResults(
       Map<int, Set<ResultNode>> map, int key, Set<ResultNode> solutions) {
-    var set = map.putIfAbsent(key, () => {});
-    set.addAll(solutions);
+    if(key > 0) {
+      var set = map.putIfAbsent(key, () => {});
+      set.addAll(solutions);
+    }
   }
 
   Set<ResultNode> comb(
