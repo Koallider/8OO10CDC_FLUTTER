@@ -24,6 +24,7 @@ class _NumbersGameWidgetState extends State<NumbersGameWidget>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
         color: const Color(0xff4f657d),
         child: SafeArea(
