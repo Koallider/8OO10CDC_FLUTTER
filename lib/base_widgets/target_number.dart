@@ -20,9 +20,23 @@ class _TargetNumberWidgetState extends State<TargetNumberWidget> {
             color: AppTheme.letterBackgroundColor,
             border: Border.all(color: AppTheme.letterBorderColor, width: 2)),
         alignment: Alignment.center,
-        child: TextField(
+        child: TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "";//Input is empty
+            }
+            if(int.tryParse(value) == null){
+              return "";//Not an integer
+            }
+            return null;
+          },
+          decoration: const InputDecoration(
+            errorStyle: TextStyle(height: 0.01),
+            counterText: "",
+          ),
           onChanged: widget.onChanged,
           maxLines: 1,
+          maxLength: 3,
           textAlign: TextAlign.center,
           keyboardType: TextInputType.number,
           style: widget.textStyle ?? AppTheme.letterTextStyle,
