@@ -25,27 +25,39 @@ class _DropdownNumberState extends State<DropdownNumber> {
             color: AppTheme.letterBackgroundColor,
             border: Border.all(color: AppTheme.letterBorderColor, width: 2)),
         alignment: Alignment.center,
-        child: DropdownButton<int>(
-          value: value,
-          alignment: Alignment.center,
-          dropdownColor: AppTheme.letterBackgroundColor,
-          underline: Container(),
-          hint: Container(),
-          items: possibleNumbers
-              .map((item) => DropdownMenuItem(
-                    child: Text(
-                      "$item",
-                      style: widget.textStyle ?? AppTheme.letterTextStyle,
-                    ),
-                    value: item,
-                  ))
-              .toList(),
-          onChanged: (newValue) {
-            setState(() {
-              value = newValue;
-              widget.onChanged?.call(newValue);
-            });
-          },
+        child: DropdownButtonHideUnderline(
+          child: DropdownButtonFormField<int>(
+            value: value,
+            alignment: Alignment.center,
+            dropdownColor: AppTheme.letterBackgroundColor,
+            validator: (value) {
+              if (value == null) {
+                return "";//Input is empty
+              }
+              return null;
+            },
+            style: widget.textStyle ?? AppTheme.letterTextStyle,
+            decoration: const InputDecoration(
+              errorStyle: TextStyle(height: 0.01),
+            ),
+            //underline: Container(),
+            hint: Container(),
+            items: possibleNumbers
+                .map((item) => DropdownMenuItem(
+                      child: Text(
+                        "$item",
+                        textAlign: TextAlign.center,
+                      ),
+                      value: item,
+                    ))
+                .toList(),
+            onChanged: (newValue) {
+              setState(() {
+                value = newValue;
+                widget.onChanged?.call(newValue);
+              });
+            },
+          ),
         ));
   }
 }
