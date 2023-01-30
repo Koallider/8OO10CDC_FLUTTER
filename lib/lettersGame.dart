@@ -39,6 +39,7 @@ class _LettersGameWidgetState extends State<LettersGameWidget>
   Widget build(BuildContext context) {
     super.build(context);
     return Container(
+      padding: const EdgeInsets.all(8),
       color: const Color(0xff4f657d),
       child: SafeArea(
         child: Container(
@@ -73,7 +74,7 @@ class _LettersGameWidgetState extends State<LettersGameWidget>
   }
 
   Widget buildBoard(Widget child) {
-    double width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width - 16;
     double letterSize =
         min((width - numberOfLetters * 4) / numberOfLetters, 80);
 
@@ -99,7 +100,7 @@ class _LettersGameWidgetState extends State<LettersGameWidget>
   }
 
   Widget buildInputField() {
-    double width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width - 16;
     double letterSize =
         min((width - numberOfLetters * 4) / numberOfLetters, 80);
 
@@ -135,7 +136,7 @@ class _LettersGameWidgetState extends State<LettersGameWidget>
   }
 
   Widget buildResultList() {
-    double width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width - 16;
     double letterSize =
         min((width - numberOfLetters * 4) / numberOfLetters, 80);
 
