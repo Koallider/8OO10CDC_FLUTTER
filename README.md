@@ -4,8 +4,8 @@ I love watching 8 Out Of 10 Cats Does Countdown. And I thougth It would be fun t
 
 There is no server side and it does all calculations on the client. The dictionary is 4MB in size so it takes some time to download it.
 
-<img src="https://user-images.githubusercontent.com/2699619/201027572-4ed46a56-fc9e-4c1a-983d-c7bbaf88af67.PNG" width="400" height="250">
-<img src="https://raw.githubusercontent.com/Koallider/8OO10CDC_FLUTTER/development/demo/numbersExample.png" width="400" height="280">
+<img src="https://raw.githubusercontent.com/Koallider/8OO10CDC_FLUTTER/development/demo/lettersExample.png" width="499" height="715">
+<img src="https://raw.githubusercontent.com/Koallider/8OO10CDC_FLUTTER/development/demo/numbersExample.png" width="499" height="715">
 
 [Live Demo](https://koallider.github.io/8OO10CDC_FLUTTER/#/)
 
