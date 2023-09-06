@@ -63,7 +63,7 @@ int findCeil(List<String> word, int fromIndex) {
 
   for (var i = fromIndex + 1; i < word.length; i++) {
     if (word[i].compareTo(word[fromIndex]) > 0 &&
-        word[i].compareTo(word[ceilIndex]) < 0) {
+        word[i].compareTo(word[ceilIndex]) <= 0) {
       ceilIndex = i;
     }
   }
